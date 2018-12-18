@@ -11,6 +11,8 @@ func (it *Color) Add(v ...Attribute) *Color {
 	return it
 }
 
+func New() {}
+
 func NewColor() *Color {
 	it := new(Color)
 	it.params = make([]Attribute, 0)
