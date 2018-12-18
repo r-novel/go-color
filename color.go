@@ -1,5 +1,7 @@
 package color
 
+var Out, _ = NewColorableDevice(OutStreamStdout, nil)
+
 type Color struct {
 	params []Attribute
 }
