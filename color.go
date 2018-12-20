@@ -59,8 +59,16 @@ func (it *Color) set() *Color {
 	return it
 }
 
+func (it *Color) unset() {
+	if !isColorable() {
+		return
+	}
+	fmt.Fprintf(Out, "%s[%dm", escape, AttributeFormatReset)
+}
+
 func (it *Color) Printf(format string, a ...interface{}) (n int, err error) {
 	it.set()
+	defer it.unset()
 
 	return fmt.Fprintf(Out, format, a...)
 }

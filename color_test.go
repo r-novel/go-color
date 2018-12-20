@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestColor(t *testing.T) {
+func TestColorAttrs(t *testing.T) {
 	fmt.Printf("Testing attribute enums \n")
 
 	fmt.Printf("Reset: dec=%d, hex=%x\n", AttributeFormatReset, AttributeFormatReset)
@@ -28,5 +28,12 @@ func TestColor(t *testing.T) {
 	fmt.Printf("BGB Black: dec=%d, hex=%x\n", AttributeBGBrightColorBlack, AttributeBGBrightColorBlack)
 	fmt.Printf("BGB White: dec=%d, hex=%x\n", AttributeBGBrightColorWhite, AttributeBGBrightColorWhite)
 
-	Set(AttributeFGColorRed).Printf("red\t")
+}
+
+func TestColorablePrintf(t *testing.T) {
+	Set(AttributeFGColorRed).Printf("red\n")
+	Set(AttributeFGColorMagenta).Printf("magenta\n")
+	Set(AttributeFGBrightColorBlue).Printf("Bright blue\n")
+	Set(AttributeFGBrightColorCyan).Printf("Bright cyan\n")
+	Set(AttributeFGColorYellow).Printf("yellow\n")
 }
