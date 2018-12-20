@@ -27,4 +27,6 @@ func TestColor(t *testing.T) {
 
 	fmt.Printf("BGB Black: dec=%d, hex=%x\n", AttributeBGBrightColorBlack, AttributeBGBrightColorBlack)
 	fmt.Printf("BGB White: dec=%d, hex=%x\n", AttributeBGBrightColorWhite, AttributeBGBrightColorWhite)
+
+	Set(AttributeFGColorRed).Printf("red\t")
 }
