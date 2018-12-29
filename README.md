@@ -15,7 +15,18 @@ go test
 
 ## Usage
 
-Will be soon;
+```go
+
+package main
+
+import color "github.com/NovelCorpse/go-color"
+
+func main() {
+	color.Println(color.AttributeFGColorWhite, "Hello white world!!!")
+	color.Printf(color.AttributeFGColorYellow, "Hello yellow world!!!\n")
+}
+
+```
 
 
 
