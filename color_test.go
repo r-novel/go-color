@@ -44,6 +44,13 @@ func TestColorablePrintf(t *testing.T) {
 	Printf(AttributeFGColorCyan, "Cyan\n")
 }
 
+func TestColorablePrinlnWithInit(t *testing.T) {
+	NewColor().Add(AttributeFGColorRed).Println("initialized Println Red")
+	NewColor().Add(AttributeFGColorMagenta).Println("initialized Println Magenta")
+	NewColor().Add(AttributeFGColorYellow).Println("initialized Println Yellow")
+	NewColor().Add(AttributeFGColorCyan).Println("initialized Println Cyan")
+}
+
 func TestColorablePrintln(t *testing.T) {
 	Println(AttributeFGColorRed, "Println Red")
 	Println(AttributeFGColorMagenta, "Println Magenta")

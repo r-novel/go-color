@@ -76,6 +76,13 @@ func (it *Color) Printf(format string, a ...interface{}) (int, error) {
 	return fmt.Fprintf(Out, format, a...)
 }
 
+func (it *Color) Println(a ...interface{}) (int, error) {
+	it.set()
+	defer it.reset()
+
+	return fmt.Fprintln(Out, a...)
+}
+
 func NewColor() *Color {
 	it := new(Color)
 	it.params = make([]Attribute, 0)
