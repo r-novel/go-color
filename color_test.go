@@ -30,10 +30,24 @@ func TestColorAttrs(t *testing.T) {
 
 }
 
+func TestColorablePrintfWithInit(t *testing.T) {
+	NewColor().Add(AttributeFGColorRed).Printf("initialized Red\n")
+	NewColor().Add(AttributeFGColorMagenta).Printf("initialized Magenta\n")
+	NewColor().Add(AttributeFGColorYellow).Printf("initialized Yellow\n")
+	NewColor().Add(AttributeFGColorCyan).Printf("initialized Cyan\n")
+}
+
 func TestColorablePrintf(t *testing.T) {
-	Set(AttributeFGColorRed).Printf("red\n")
-	Set(AttributeFGColorMagenta).Printf("magenta\n")
-	Set(AttributeFGBrightColorBlue).Printf("Bright blue\n")
-	Set(AttributeFGBrightColorCyan).Printf("Bright cyan\n")
-	Set(AttributeFGColorYellow).Printf("yellow\n")
+	Printf(AttributeFGColorRed, "Red\n")
+	Printf(AttributeFGColorMagenta, "Magenta\n")
+	Printf(AttributeFGColorYellow, "Yellow\n")
+	Printf(AttributeFGColorCyan, "Cyan\n")
+}
+
+func TestColorablePrintln(t *testing.T) {
+	Println(AttributeFGColorRed, "Println Red")
+	Println(AttributeFGColorMagenta, "Println Magenta")
+	Println(AttributeFGColorYellow, "Println Yellow")
+	Println(AttributeFGColorCyan, "Println Cyan")
+
 }

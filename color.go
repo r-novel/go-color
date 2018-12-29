@@ -34,23 +34,6 @@ func (it *Color) format() string {
 	return fmt.Sprintf("%s[%sm", escape, it.sequence())
 }
 
-func isColorable() bool {
-	if tty.IsTTY() {
-		return true
-	}
-	return false
-}
-
-func Set(v ...Attribute) *Color {
-	it := NewColor()
-	it.Add(v...)
-	if !isColorable() {
-		return it
-	}
-	fmt.Fprintf(Out, it.format())
-	return it
-}
-
 func (it *Color) set() *Color {
 	if !isColorable() {
 		return it
@@ -59,16 +42,36 @@ func (it *Color) set() *Color {
 	return it
 }
 
-func (it *Color) unset() {
+func (it *Color) reset() {
 	if !isColorable() {
 		return
 	}
 	fmt.Fprintf(Out, "%s[%dm", escape, AttributeFormatReset)
 }
 
-func (it *Color) Printf(format string, a ...interface{}) (n int, err error) {
+func isColorable() bool { return tty.IsTTY() }
+
+func Printf(v Attribute, format string, a ...interface{}) (int, error) {
+	it := NewColor()
+	it.Add(v)
 	it.set()
-	defer it.unset()
+	defer it.reset()
+
+	return fmt.Fprintf(Out, format, a...)
+}
+
+func Println(v Attribute, a ...interface{}) (int, error) {
+	it := NewColor()
+	it.Add(v)
+	it.set()
+	defer it.reset()
+
+	return fmt.Fprintln(Out, a...)
+}
+
+func (it *Color) Printf(format string, a ...interface{}) (int, error) {
+	it.set()
+	defer it.reset()
 
 	return fmt.Fprintf(Out, format, a...)
 }
