@@ -16,8 +16,10 @@ type Color struct {
 	params []Attribute
 }
 
-func (it *Color) Add(v ...Attribute) *Color {
-	it.params = append(it.params, v...)
+func (it *Color) Add(in string) *Color {
+	if v, ok := stringAttribute[in]; ok {
+		it.params = append(it.params, v)
+	}
 	return it
 }
 
@@ -51,7 +53,7 @@ func (it *Color) reset() {
 
 func isColorable() bool { return tty.IsTTY() }
 
-func Printf(v Attribute, format string, a ...interface{}) (int, error) {
+func Printf(v string, format string, a ...interface{}) (int, error) {
 	it := NewColor()
 	it.Add(v)
 	it.set()
@@ -60,7 +62,7 @@ func Printf(v Attribute, format string, a ...interface{}) (int, error) {
 	return fmt.Fprintf(Out, format, a...)
 }
 
-func Println(v Attribute, a ...interface{}) (int, error) {
+func Println(v string, a ...interface{}) (int, error) {
 	it := NewColor()
 	it.Add(v)
 	it.set()

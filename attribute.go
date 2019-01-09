@@ -67,3 +67,25 @@ const (
 	AttributeBGBrightColorCyan
 	AttributeBGBrightColorWhite
 )
+
+var stringAttribute = map[string]Attribute{
+	"reset":  AttributeFormatReset,
+	"bold":   AttributeFormatBold,
+	"faint":  AttributeFormatFaint,
+	"italic": AttributeFormatItalic,
+	"ul":     AttributeFormatUnderline,
+	"bs":     AttributeFormatBlinkSlow,
+	"br":     AttributeFormatBlinkRapid,
+	"rv":     AttributeFormatReverseVideo,
+	"cncl":   AttributeFormatConcealed,
+	"crsout": AttributeFormatCrossedOut,
+
+	"black":   AttributeFGColorBlack,
+	"red":     AttributeFGColorRed,
+	"green":   AttributeFGColorGreen,
+	"yellow":  AttributeFGColorYellow,
+	"blue":    AttributeFGColorBlue,
+	"magenta": AttributeFGColorMagenta,
+	"cyan":    AttributeFGColorCyan,
+	"white":   AttributeFGColorWhite,
+}
