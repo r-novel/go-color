@@ -16,10 +16,13 @@ type Color struct {
 	params []Attribute
 }
 
-func (it *Color) Add(in string) *Color {
-	if v, ok := stringAttribute[in]; ok {
-		it.params = append(it.params, v)
+func (it *Color) Add(in ...string) *Color {
+	for _, k := range in {
+		if v, ok := stringAttribute[k]; ok {
+			it.params = append(it.params, v)
+		}
 	}
+
 	return it
 }
 
