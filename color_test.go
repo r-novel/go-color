@@ -44,6 +44,13 @@ func TestColorablePrintf(t *testing.T) {
 	Printf("cyan", "Cyan\n")
 }
 
+func TestColorableBackgroundPrintf(t *testing.T) {
+	Printf("b-red", "Background red\n")
+	Printf("b-magenta", "Background magenta\n")
+	Printf("b-yellow", "Background yellow\n")
+	Printf("b-cyan", "Background cyan\n")
+}
+
 func TestColorablePrinlnWithInit(t *testing.T) {
 	NewColor().Add("red").Println("initialized Println Red")
 	NewColor().Add("magenta").Println("initialized Println Magenta")

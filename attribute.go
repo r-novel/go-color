@@ -88,4 +88,13 @@ var stringAttribute = map[string]Attribute{
 	"magenta": AttributeFGColorMagenta,
 	"cyan":    AttributeFGColorCyan,
 	"white":   AttributeFGColorWhite,
+
+	"b-black":   AttributeBGColorBlack,
+	"b-red":     AttributeBGColorRed,
+	"b-green":   AttributeBGColorGreen,
+	"b-yellow":  AttributeBGColorYellow,
+	"b-blue":    AttributeBGColorBlue,
+	"b-magenta": AttributeBGColorMagenta,
+	"b-cyan":    AttributeBGColorCyan,
+	"b-white":   AttributeBGColorWhite,
 }
