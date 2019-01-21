@@ -22,8 +22,12 @@ package main
 import color "github.com/NovelCorpse/go-color"
 
 func main() {
-	color.Println(color.AttributeFGColorWhite, "Hello white world!!!")
-	color.Printf(color.AttributeFGColorYellow, "Hello yellow world!!!\n")
+	c := color.NewColor()
+	c.Add("red").Println("Hello red world!")
+	c.Add("yellow").Printf("Hello yellow world!\n")
+
+	color.Printf("red", "Without color obj\n")
+	color.Println("yellow", "Without color obj\n")
 }
 
 ```
