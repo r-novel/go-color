@@ -36,8 +36,12 @@ func (it *Color) sequence() string {
 	return strings.Join(format, ";")
 }
 
-func (it *Color) format() string {
+func (it *Color) fmt() string {
 	return fmt.Sprintf("%s[%sm", escape, it.sequence())
+}
+
+func (it *Color) unfmt() string {
+	return fmt.Sprintf("%s[%dm", escape, AttributeFormatReset)
 }
 
 func (it *Color) set(w io.Writer) *Color {
@@ -45,10 +49,10 @@ func (it *Color) set(w io.Writer) *Color {
 		return it
 	}
 	if w != nil {
-		fmt.Fprintf(w, it.format())
+		fmt.Fprintf(w, it.fmt())
 	}
 
-	fmt.Fprintf(Out, it.format())
+	fmt.Fprintf(Out, it.fmt())
 	return it
 }
 
@@ -57,45 +61,12 @@ func (it *Color) reset(w io.Writer) {
 		return
 	}
 	if w != nil {
-		fmt.Fprintf(w, "%s[%dm", escape, AttributeFormatReset)
+		fmt.Fprintf(w, it.unfmt())
 	}
-	fmt.Fprintf(Out, "%s[%dm", escape, AttributeFormatReset)
+	fmt.Fprintf(Out, it.unfmt())
 }
 
 func isColorable() bool { return tty.IsTTY() }
-
-func Printf(v string, format string, a ...interface{}) (int, error) {
-	it := NewColor()
-	it.Add(v)
-	it.set(nil)
-	defer it.reset(nil)
-
-	return fmt.Fprintf(Out, format, a...)
-}
-
-func Fprintf(w io.Writer, v string, format string, a ...interface{}) (int, error) {
-	it := NewColor()
-	it.Add(v)
-	it.set(w)
-	defer it.reset(w)
-
-	return fmt.Fprintf(w, format, a...)
-}
-
-func Println(v string, a ...interface{}) (int, error) {
-	it := NewColor()
-	it.Add(v)
-	it.set(nil)
-	defer it.reset(nil)
-
-	return fmt.Fprintln(Out, a...)
-}
-
-func Sprintf(v string, format string, a ...interface{}) string {
-	it := NewColor()
-	it.Add(v)
-	return (it.sset() + fmt.Sprintf(format, a...) + it.sreset())
-}
 
 func (it *Color) sset() string {
 	return fmt.Sprintf("%s[%sm", escape, it.sequence())
@@ -126,7 +97,7 @@ func (it *Color) Fprintf(w io.Writer, format string, a ...interface{}) (int, err
 }
 
 func (it *Color) Sprintf(format string, a ...interface{}) string {
-	return (it.sset() + fmt.Sprintf(format, a...) + it.sreset())
+	return (it.fmt() + fmt.Sprintf(format, a...) + it.unfmt())
 }
 
 func NewColor() *Color {
