@@ -2,6 +2,7 @@ package color
 
 import (
 	"fmt"
+	"io"
 	"strconv"
 	"strings"
 
@@ -39,17 +40,24 @@ func (it *Color) format() string {
 	return fmt.Sprintf("%s[%sm", escape, it.sequence())
 }
 
-func (it *Color) set() *Color {
+func (it *Color) set(w io.Writer) *Color {
 	if !isColorable() {
 		return it
 	}
+	if w != nil {
+		fmt.Fprintf(w, it.format())
+	}
+
 	fmt.Fprintf(Out, it.format())
 	return it
 }
 
-func (it *Color) reset() {
+func (it *Color) reset(w io.Writer) {
 	if !isColorable() {
 		return
+	}
+	if w != nil {
+		fmt.Fprintf(w, "%s[%dm", escape, AttributeFormatReset)
 	}
 	fmt.Fprintf(Out, "%s[%dm", escape, AttributeFormatReset)
 }
@@ -59,33 +67,49 @@ func isColorable() bool { return tty.IsTTY() }
 func Printf(v string, format string, a ...interface{}) (int, error) {
 	it := NewColor()
 	it.Add(v)
-	it.set()
-	defer it.reset()
+	it.set(nil)
+	defer it.reset(nil)
 
 	return fmt.Fprintf(Out, format, a...)
+}
+
+func Fprintf(w io.Writer, v string, format string, a ...interface{}) (int, error) {
+	it := NewColor()
+	it.Add(v)
+	it.set(w)
+	defer it.reset(w)
+
+	return fmt.Fprintf(w, format, a...)
 }
 
 func Println(v string, a ...interface{}) (int, error) {
 	it := NewColor()
 	it.Add(v)
-	it.set()
-	defer it.reset()
+	it.set(nil)
+	defer it.reset(nil)
 
 	return fmt.Fprintln(Out, a...)
 }
 
 func (it *Color) Printf(format string, a ...interface{}) (int, error) {
-	it.set()
-	defer it.reset()
+	it.set(nil)
+	defer it.reset(nil)
 
 	return fmt.Fprintf(Out, format, a...)
 }
 
 func (it *Color) Println(a ...interface{}) (int, error) {
-	it.set()
-	defer it.reset()
+	it.set(nil)
+	defer it.reset(nil)
 
 	return fmt.Fprintln(Out, a...)
+}
+
+func (it *Color) Fprintf(w io.Writer, format string, a ...interface{}) (int, error) {
+	it.set(w)
+	defer it.reset(w)
+
+	return fmt.Fprintf(w, format, a...)
 }
 
 func NewColor() *Color {

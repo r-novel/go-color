@@ -2,6 +2,7 @@ package color
 
 import (
 	"fmt"
+	"os"
 	"testing"
 )
 
@@ -26,42 +27,49 @@ func TestColorAttrs(t *testing.T) {
 	fmt.Printf("FGB White: dec=%d, hex=%x\n", AttributeFGBrightColorWhite, AttributeFGBrightColorWhite)
 
 	fmt.Printf("BGB Black: dec=%d, hex=%x\n", AttributeBGBrightColorBlack, AttributeBGBrightColorBlack)
-	fmt.Printf("BGB White: dec=%d, hex=%x\n", AttributeBGBrightColorWhite, AttributeBGBrightColorWhite)
+	fmt.Printf("BGB White: dec=%d, hex=%x\n\n", AttributeBGBrightColorWhite, AttributeBGBrightColorWhite)
 
 }
 
 func TestColorablePrintfWithInit(t *testing.T) {
-	NewColor().Add("red").Printf("initialized Red\n")
-	NewColor().Add("magenta").Printf("initialized Magenta\n")
-	NewColor().Add("yellow").Printf("initialized Yellow\n")
-	NewColor().Add("cyan").Printf("initialized Cyan\n")
+	NewColor().Add("red").Printf("Initialized Printf red;\n")
+	NewColor().Add("magenta").Printf("Initialized Printf magenta;\n")
+	NewColor().Add("yellow").Printf("Initialized Printf yellow;\n")
+	NewColor().Add("cyan").Printf("Initialized Printf cyan;\n\n")
 }
 
-func TestColorablePrintf(t *testing.T) {
-	Printf("red", "Red\n")
-	Printf("magenta", "Magenta\n")
-	Printf("yellow", "Yellow\n")
-	Printf("cyan", "Cyan\n")
-}
-
-func TestColorableBackgroundPrintf(t *testing.T) {
-	Printf("b-red", "Background red\n")
-	Printf("b-magenta", "Background magenta\n")
-	Printf("b-yellow", "Background yellow\n")
-	Printf("b-cyan", "Background cyan\n")
+func TestColorableFprinfWithInit(t *testing.T) {
+	NewColor().Add("red").Fprintf(os.Stdout, "Initialized Fprintf red;\n")
+	NewColor().Add("magenta").Fprintf(os.Stdout, "Initialized Fprintf magenta;\n")
+	NewColor().Add("yellow").Fprintf(os.Stdout, "Initialized Fprintf yellow;\n")
+	NewColor().Add("cyan").Fprintf(os.Stdout, "Initialized Fprintf cyan;\n\n")
 }
 
 func TestColorablePrinlnWithInit(t *testing.T) {
-	NewColor().Add("red").Println("initialized Println Red")
-	NewColor().Add("magenta").Println("initialized Println Magenta")
-	NewColor().Add("yellow").Println("initialized Println Yellow")
-	NewColor().Add("cyan").Println("initialized Println Cyan")
+	NewColor().Add("red").Println("Initialized Println red;")
+	NewColor().Add("magenta").Println("Initialized Println magenta;")
+	NewColor().Add("yellow").Println("Initialized Println yellow;")
+	NewColor().Add("cyan").Println("Initialized Println cyan;\n")
+}
+
+func TestColorablePrintf(t *testing.T) {
+	Printf("red", "Printf red;\n")
+	Printf("magenta", "Printf magenta\n")
+	Printf("yellow", "Yellow\n")
+	Printf("cyan", "Cyan\n\n")
+}
+
+func TestColorableFprintf(t *testing.T) {
+	Fprintf(os.Stdout, "red", "Fprintf red;\n")
+	Fprintf(os.Stdout, "magenta", "Fprintf magenta;\n")
+	Fprintf(os.Stdout, "yellow", "Fprintf yellow;\n")
+	Fprintf(os.Stdout, "cyan", "Fprintf cyan;\n\n")
 }
 
 func TestColorablePrintln(t *testing.T) {
-	Println("red", "Println Red")
-	Println("magenta", "Println Magenta")
-	Println("yellow", "Println Yellow")
-	Println("cyan", "Println Cyan")
+	Println("red", "Println red;")
+	Println("magenta", "Println magenta;")
+	Println("yellow", "Println yellow;")
+	Println("cyan", "Println cyan;\n")
 
 }
