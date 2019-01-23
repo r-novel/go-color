@@ -9,7 +9,8 @@ import (
 	tty "github.com/NovelCorpse/go-tty"
 )
 
-const escape = "\x1b"
+const hex_escape = "\x1b"
+const oct_escape = "\033"
 
 var Out, _ = NewColorableDevice(OutStreamStdout, nil)
 
@@ -37,11 +38,11 @@ func (it *Color) sequence() string {
 }
 
 func (it *Color) fmt() string {
-	return fmt.Sprintf("%s[%sm", escape, it.sequence())
+	return fmt.Sprintf("%s[%sm", oct_escape, it.sequence())
 }
 
 func (it *Color) unfmt() string {
-	return fmt.Sprintf("%s[%dm", escape, AttributeFormatReset)
+	return fmt.Sprintf("%s[%dm", hex_escape, AttributeFormatReset)
 }
 
 func (it *Color) set(w io.Writer) *Color {
@@ -67,13 +68,6 @@ func (it *Color) reset(w io.Writer) {
 }
 
 func isColorable() bool { return tty.IsTTY() }
-
-func (it *Color) sset() string {
-	return fmt.Sprintf("%s[%sm", escape, it.sequence())
-}
-func (it *Color) sreset() string {
-	return fmt.Sprintf("%s[%dm", escape, AttributeFormatReset)
-}
 
 func (it *Color) Printf(format string, a ...interface{}) (int, error) {
 	it.set(nil)
