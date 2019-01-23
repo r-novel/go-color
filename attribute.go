@@ -2,6 +2,9 @@ package color
 
 type Attribute uint8
 
+const hex_escape = "\x1b"
+const oct_escape = "\033"
+
 const (
 	AttributeFormat Attribute = 0x00
 

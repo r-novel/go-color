@@ -9,9 +9,6 @@ import (
 	tty "github.com/NovelCorpse/go-tty"
 )
 
-const hex_escape = "\x1b"
-const oct_escape = "\033"
-
 var Out, _ = NewColorableDevice(OutStreamStdout, nil)
 
 type Color struct {
@@ -92,6 +89,10 @@ func (it *Color) Fprintf(w io.Writer, format string, a ...interface{}) (int, err
 
 func (it *Color) Sprintf(format string, a ...interface{}) string {
 	return (it.fmt() + fmt.Sprintf(format, a...) + it.unfmt())
+}
+
+func (it *Color) Sprintln(a ...interface{}) string {
+	return (it.fmt() + fmt.Sprintln(a...) + it.unfmt())
 }
 
 func NewColor() *Color {

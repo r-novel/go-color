@@ -37,3 +37,9 @@ func Sprintf(v string, format string, a ...interface{}) string {
 	it.Add(v)
 	return (it.fmt() + fmt.Sprintf(format, a...) + it.unfmt())
 }
+
+func Sprintln(v string, a ...interface{}) string {
+	it := NewColor()
+	it.Add(v)
+	return (it.fmt() + fmt.Sprintln(a...) + it.unfmt())
+}
