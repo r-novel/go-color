@@ -91,6 +91,19 @@ func Println(v string, a ...interface{}) (int, error) {
 	return fmt.Fprintln(Out, a...)
 }
 
+func Sprintf(v string, format string, a ...interface{}) string {
+	it := NewColor()
+	it.Add(v)
+	return (it.sset() + fmt.Sprintf(format, a...) + it.sreset())
+}
+
+func (it *Color) sset() string {
+	return fmt.Sprintf("%s[%sm", escape, it.sequence())
+}
+func (it *Color) sreset() string {
+	return fmt.Sprintf("%s[%dm", escape, AttributeFormatReset)
+}
+
 func (it *Color) Printf(format string, a ...interface{}) (int, error) {
 	it.set(nil)
 	defer it.reset(nil)
@@ -110,6 +123,10 @@ func (it *Color) Fprintf(w io.Writer, format string, a ...interface{}) (int, err
 	defer it.reset(w)
 
 	return fmt.Fprintf(w, format, a...)
+}
+
+func (it *Color) Sprintf(format string, a ...interface{}) string {
+	return (it.sset() + fmt.Sprintf(format, a...) + it.sreset())
 }
 
 func NewColor() *Color {
