@@ -87,6 +87,13 @@ func (it *Color) Fprintf(w io.Writer, format string, a ...interface{}) (int, err
 	return fmt.Fprintf(w, format, a...)
 }
 
+func (it *Color) Fprintln(w io.Writer, a ...interface{}) (int, error) {
+	it.set(w)
+	defer it.reset(w)
+
+	return fmt.Fprintln(w, a...)
+}
+
 func (it *Color) Sprintf(format string, a ...interface{}) string {
 	return (it.fmt() + fmt.Sprintf(format, a...) + it.unfmt())
 }

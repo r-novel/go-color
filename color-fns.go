@@ -23,6 +23,15 @@ func Fprintf(w io.Writer, v string, format string, a ...interface{}) (int, error
 	return fmt.Fprintf(w, format, a...)
 }
 
+func Fprintln(w io.Writer, v string, a ...interface{}) (int, error) {
+	it := NewColor()
+	it.Add(v)
+	it.set(w)
+	defer it.reset(w)
+
+	return fmt.Fprintln(w, a...)
+}
+
 func Println(v string, a ...interface{}) (int, error) {
 	it := NewColor()
 	it.Add(v)

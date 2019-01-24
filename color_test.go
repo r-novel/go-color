@@ -45,6 +45,13 @@ func TestColorableFprinfWithInit(t *testing.T) {
 	NewColor().Add("cyan").Fprintf(os.Stdout, "Initialized Fprintf cyan;\n\n")
 }
 
+func TestColorableFprintlnWithInit(t *testing.T) {
+	NewColor().Add("red").Fprintln(os.Stdout, "Initialized Fprintln red;")
+	NewColor().Add("magenta").Fprintln(os.Stdout, "Initialized Fprintln magenta;")
+	NewColor().Add("yellow").Fprintln(os.Stdout, "Initialized Fprintln yellow;")
+	NewColor().Add("cyan").Fprintln(os.Stdout, "Initialized Fprintln cyan;\n")
+}
+
 func TestColorablePrinlnWithInit(t *testing.T) {
 	NewColor().Add("red").Println("Initialized Println red;")
 	NewColor().Add("magenta").Println("Initialized Println magenta;")
@@ -92,6 +99,13 @@ func TestColorableFprintf(t *testing.T) {
 	Fprintf(os.Stdout, "magenta", "Fprintf magenta;\n")
 	Fprintf(os.Stdout, "yellow", "Fprintf yellow;\n")
 	Fprintf(os.Stdout, "cyan", "Fprintf cyan;\n\n")
+}
+
+func TestColorableFprintln(t *testing.T) {
+	Fprintln(os.Stdout, "red", "Fprintln red;")
+	Fprintln(os.Stdout, "magenta", "Fprintln magenta;")
+	Fprintln(os.Stdout, "yellow", "Fprintln yellow;")
+	Fprintln(os.Stdout, "cyan", "Fprintln cyan;\n")
 }
 
 func TestColorablePrintln(t *testing.T) {
