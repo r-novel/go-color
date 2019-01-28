@@ -142,3 +142,15 @@ func TestColorableSprintln(t *testing.T) {
 	cyan := Sprintln("cyan", "Sprintln cyan;")
 	fmt.Printf("colorable: %s\n", cyan)
 }
+
+func TestColorablePrintByName(t *testing.T) {
+	Green("It's green;")
+	Red("It's red;")
+	Yellow("It's yellow;")
+	Blue("It's blue;")
+	Cyan("It's cyan;")
+	Magenta("It's magenta;")
+	White("It's white;")
+	Black("It's black;")
+
+}
