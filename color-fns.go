@@ -44,11 +44,11 @@ func Println(v string, a ...interface{}) (int, error) {
 func Sprintf(v string, format string, a ...interface{}) string {
 	it := NewColor()
 	it.Add(v)
-	return (it.fmt() + fmt.Sprintf(format, a...) + it.unfmt())
+	return it.wrap(fmt.Sprintf(format, a...))
 }
 
 func Sprintln(v string, a ...interface{}) string {
 	it := NewColor()
 	it.Add(v)
-	return (it.fmt() + fmt.Sprintln(a...) + it.unfmt())
+	return it.wrap(fmt.Sprintln(a...))
 }

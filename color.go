@@ -42,6 +42,10 @@ func (it *Color) unfmt() string {
 	return fmt.Sprintf("%s[%dm", hex_escape, AttributeFormatReset)
 }
 
+func (it *Color) wrap(in string) string {
+	return fmt.Sprintf("%s%s%s", it.fmt(), in, it.unfmt())
+}
+
 func (it *Color) set(w io.Writer) *Color {
 	if !isColorable() {
 		return it
@@ -95,11 +99,11 @@ func (it *Color) Fprintln(w io.Writer, a ...interface{}) (int, error) {
 }
 
 func (it *Color) Sprintf(format string, a ...interface{}) string {
-	return (it.fmt() + fmt.Sprintf(format, a...) + it.unfmt())
+	return it.wrap(fmt.Sprintf(format, a...))
 }
 
 func (it *Color) Sprintln(a ...interface{}) string {
-	return (it.fmt() + fmt.Sprintln(a...) + it.unfmt())
+	return it.wrap(fmt.Sprintln(a...))
 }
 
 func NewColor() *Color {
