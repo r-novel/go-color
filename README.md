@@ -38,6 +38,12 @@ func main() {
 	color.Fprintf(os.Stdout, "cyan", "cyan;\n")
 	blue := color.Sprintf("blue", "blue;\n")
 	fmt.Printf("colorable string is: %s", blue)
+
+	color.Red("It's red;")
+	color.Green("It's green;")
+	color.Blue("It's blue;")
+	color.Cyan("It's cyan;")
+	color.Magenta("It's magenta")
 }
 ```
 
