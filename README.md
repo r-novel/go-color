@@ -44,6 +44,15 @@ func main() {
 	color.Blue("It's blue;")
 	color.Cyan("It's cyan;")
 	color.Magenta("It's magenta")
+
+	color.Greenf("It's formating green;\n")
+	color.Redf("It's formating red;\n")
+	color.Yellowf("It's formating yellow;\n")
+	color.Bluef("It's formating blue;\n")
+	color.Cyanf("It's formating cyan;\n")
+	color.Magentaf("It's formating magenta;\n")
+	color.Whitef("It's formating white;\n")
+	color.Blackf("It's formating black;\n")
 }
 ```
 
