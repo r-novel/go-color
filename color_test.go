@@ -153,4 +153,13 @@ func TestColorablePrintByName(t *testing.T) {
 	White("It's white;")
 	Black("It's black;")
 
+	Greenf("It's formating green;\n")
+	Redf("It's formating red;\n")
+	Yellowf("It's formating yellow;\n")
+	Bluef("It's formating blue;\n")
+	Cyanf("It's formating cyan;\n")
+	Magentaf("It's formating magenta;\n")
+	Whitef("It's formating white;\n")
+	Blackf("It's formating black;\n")
+
 }
