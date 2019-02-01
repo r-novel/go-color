@@ -143,7 +143,7 @@ func TestColorableSprintln(t *testing.T) {
 	fmt.Printf("colorable: %s\n", cyan)
 }
 
-func TestColorablePrintByName(t *testing.T) {
+func TestColorablePrintlnByName(t *testing.T) {
 	Green("It's green;")
 	Red("It's red;")
 	Yellow("It's yellow;")
@@ -152,7 +152,9 @@ func TestColorablePrintByName(t *testing.T) {
 	Magenta("It's magenta;")
 	White("It's white;")
 	Black("It's black;")
+}
 
+func TestColorablePrintfByName(t *testing.T) {
 	Greenf("It's formating green;\n")
 	Redf("It's formating red;\n")
 	Yellowf("It's formating yellow;\n")
@@ -161,5 +163,18 @@ func TestColorablePrintByName(t *testing.T) {
 	Magentaf("It's formating magenta;\n")
 	Whitef("It's formating white;\n")
 	Blackf("It's formating black;\n")
+}
 
+func TestColorableSprintlnByName(t *testing.T) {
+	red := SRed("Sprintln red;")
+	fmt.Printf("colorable: %s", red)
+
+	magenta := SMagenta("Sprintln magenta;")
+	fmt.Printf("colorable: %s", magenta)
+
+	yellow := SYellow("Sprintln yellow;")
+	fmt.Printf("colorable: %s", yellow)
+
+	cyan := SCyan("Sprintln cyan;")
+	fmt.Printf("colorable: %s\n", cyan)
 }

@@ -10,7 +10,7 @@ $ go get github.com/NovelCorpse/go-color
 ## Test
 
 ```
-go test
+$ go test
 ```
 
 ## Usage
@@ -53,6 +53,9 @@ func main() {
 	color.Magentaf("It's formating magenta;\n")
 	color.Whitef("It's formating white;\n")
 	color.Blackf("It's formating black;\n")
+
+	red := color.SRed("It's stringified red;")
+	fmt.Printf("%s\n", red)
 }
 ```
 
