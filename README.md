@@ -56,6 +56,9 @@ func main() {
 
 	red := color.SRed("It's stringified red;")
 	fmt.Printf("%s\n", red)
+
+	color.FGreenf(os.Stdout, "It's formating green to file;\n")
+  color.FYellow(os.Stdout, "It's yellow to file;")
 }
 ```
 
