@@ -165,6 +165,17 @@ func TestColorablePrintfByName(t *testing.T) {
 	Blackf("It's formating black;\n")
 }
 
+func TestColorableFPrintfByName(t *testing.T) {
+	FGreenf(os.Stdout, "It's formating green to file;\n")
+	FRedf(os.Stdout, "It's formating red to file;\n")
+	FYellowf(os.Stdout, "It's formating yellow to file;\n")
+	FBluef(os.Stdout, "It's formating blue to file;\n")
+	FCyanf(os.Stdout, "It's formating cyan to file;\n")
+	FMagentaf(os.Stdout, "It's formating magenta to file;\n")
+	FWhitef(os.Stdout, "It's formating white to file;\n")
+	FBlackf(os.Stdout, "It's formating black to file;\n")
+}
+
 func TestColorableFPrintlnByName(t *testing.T) {
 	FGreen(os.Stdout, "It's green to file;")
 	FRed(os.Stdout, "It's red to file;")
