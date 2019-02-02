@@ -165,6 +165,17 @@ func TestColorablePrintfByName(t *testing.T) {
 	Blackf("It's formating black;\n")
 }
 
+func TestColorableFPrintlnByName(t *testing.T) {
+	FGreen(os.Stdout, "It's green to file;")
+	FRed(os.Stdout, "It's red to file;")
+	FYellow(os.Stdout, "It's yellow to file;")
+	FBlue(os.Stdout, "It's blue to file;")
+	FCyan(os.Stdout, "It's cyan to file;")
+	FMagenta(os.Stdout, "It's magenta to file;")
+	FWhite(os.Stdout, "It's white to file;")
+	FBlack(os.Stdout, "It's black to file;")
+}
+
 func TestColorableSprintlnByName(t *testing.T) {
 	red := SRed("Sprintln red;")
 	fmt.Printf("colorable: %s", red)
