@@ -38,7 +38,7 @@ func TestColorablePrintfWithInit(t *testing.T) {
 	NewColor().Add("cyan").Printf("Initialized Printf cyan;\n\n")
 }
 
-func TestColorableFprinfWithInit(t *testing.T) {
+func TestColorableFprintfWithInit(t *testing.T) {
 	NewColor().Add("red").Fprintf(os.Stdout, "Initialized Fprintf red;\n")
 	NewColor().Add("magenta").Fprintf(os.Stdout, "Initialized Fprintf magenta;\n")
 	NewColor().Add("yellow").Fprintf(os.Stdout, "Initialized Fprintf yellow;\n")
@@ -52,14 +52,14 @@ func TestColorableFprintlnWithInit(t *testing.T) {
 	NewColor().Add("cyan").Fprintln(os.Stdout, "Initialized Fprintln cyan;\n")
 }
 
-func TestColorablePrinlnWithInit(t *testing.T) {
+func TestColorablePrintlnWithInit(t *testing.T) {
 	NewColor().Add("red").Println("Initialized Println red;")
 	NewColor().Add("magenta").Println("Initialized Println magenta;")
 	NewColor().Add("yellow").Println("Initialized Println yellow;")
 	NewColor().Add("cyan").Println("Initialized Println cyan;\n")
 }
 
-func TestColorableSprinfWithInit(t *testing.T) {
+func TestColorableSprintfWithInit(t *testing.T) {
 	red := NewColor().Add("red").Sprintf("Initialized Sprintf red;")
 	fmt.Printf("colorable: %s\n", red)
 
