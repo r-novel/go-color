@@ -200,3 +200,17 @@ func TestColorableSprintlnByName(t *testing.T) {
 	cyan := SCyan("Sprintln cyan;")
 	fmt.Printf("colorable: %s\n", cyan)
 }
+
+func TestColorableSprintfByName(t *testing.T) {
+	red := SRedf("It's formatting sprint red;\n")
+	fmt.Printf("colorable: %s", red)
+
+	magenta := SMagentaf("It's formatting sprint magenta;\n")
+	fmt.Printf("colorable: %s", magenta)
+
+	yellow := SYellowf("It's formatting sprint yellow;\n")
+	fmt.Printf("colorable: %s", yellow)
+
+	cyan := SCyanf("It's formatting sprint cyan;\n")
+	fmt.Printf("colorable: %s\n", cyan)
+}
